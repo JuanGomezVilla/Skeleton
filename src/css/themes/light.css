@@ -1,0 +1,22 @@
+/* Variables */
+:root {
+    --body-background-color: #FFFFFF;
+    --color-text: #000000;
+
+    --background-color-header: #e9ecef;
+    --background-color-break-line: rgba(0, 0, 0, .1);
+    --background-color-break-line-header: var(--background-color-break-line);
+    --background-color-input-readonly: #e9ecef;
+    --background-color-footer: #f8f9fa;
+    --background-color-table-even-td: #f2f2f2;
+    --background-color-border-td: #dee2e6;
+    --background-color-alert-box: #FFFFFF;
+    --background-color-table-tr-hover: #f8f9fa;
+    --background-color-table-th: transparent;
+
+    --color-link: #0d6efd;
+    --color-input: #495057;
+    --color-simple-button: #343a40;
+    --color-footer: rgba(33, 37, 41, 0.75);
+    --color-input-readonly: var(--color-input);
+}
