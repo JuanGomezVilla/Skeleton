@@ -3,7 +3,7 @@
 ![Skeleton](https://img.shields.io/badge/version-v1.0.0-blue.svg)
 ![Skeleton](https://img.shields.io/github/license/JuanGomezVilla/Skeleton)
 
-Skeleton is a web framework written in PHP for small projects. It prioritizes functionality over aesthetics, giving programmers ready-made tools.
+Skeleton is a web framework written in PHP for small projects. It prioritizes functionality over aesthetics, giving programmers ready-made tools and ensuring high loading speeds.
 
 ## Advantages
 - Manager-defined system
