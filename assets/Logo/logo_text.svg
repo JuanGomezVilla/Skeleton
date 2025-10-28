@@ -1,11 +1,11 @@
-<svg viewBox="0 0 3900 900" width="500" xmlns="http://www.w3.org/2000/svg">
-    <text 
-        x="0" 
-        y="800" 
-        fill="#087ABB" 
-        font-family="Bahnschrift SemiBold" 
-        font-weight="600" 
-        font-size="1000">
-        Skeleton
+<svg height="16" width="63" xmlns="http://www.w3.org/2000/svg">
+    <text
+        xmlns="http://www.w3.org/2000/svg"
+        x="0"
+        y="13"
+        fill="#087ABB"
+        font-family="Bahnschrift"
+        font-weight="600">
+            Skeleton
     </text>
 </svg>
