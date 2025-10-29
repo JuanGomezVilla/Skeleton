@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+
+            html, body {
+                margin: 0 auto;
+            }
+
+        </style>
+    </head>
+    <body>
+        <canvas id="logo"></canvas>
+        <script>
+
+            let canvas = document.querySelector("#logo");
+            let ctx = canvas.getContext("2d");
+            let logo = {
+                backgroundColor: "#087ABB",
+                roundCorners: 0,
+                width: 512,
+                height: 512,
+                text: "SKL",
+                textColor: "#FFFFFF",
+                font: {
+                    size: "200px",
+                    weight: 600,
+                    family: "Bahnschrift",
+                },
+                shadow: {
+                    color: "rgba(0, 0, 0, 0.5)",
+                    blur: 20
+                }
+
+            }
+
+            function drawLogo(){
+                //Establece el ancho y alto del lienzo                
+                canvas.width = logo.width;
+                canvas.height = logo.height;
+
+                //Limpia el lienzo
+                ctx.clearRect(0, 0, logo.width, logo.width);
+                
+                //Establece el color de fondo
+                ctx.beginPath();
+                ctx.fillStyle = logo.backgroundColor;
+                ctx.roundRect(0, 0, logo.width, logo.height, logo.roundCorners);
+                ctx.fill();
+                ctx.closePath();
+
+                //Configura el tamaño de fuente
+                ctx.font = `${logo.font.weight} ${logo.font.size} ${logo.font.family}`;
+                ctx.textAlign = "center";
+                ctx.textBaseline = "middle";
+
+                //Shadow
+                ctx.shadowColor = logo.shadow.color;
+                ctx.shadowBlur = logo.shadow.blur;
+
+                ctx.fillStyle = logo.textColor;
+                ctx.fillText(logo.text, logo.width/2, logo.height/2);
+
+            }
+
+            drawLogo();
+
+        </script>
+    </body>
+</html>
