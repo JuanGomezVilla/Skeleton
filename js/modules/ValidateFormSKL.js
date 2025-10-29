@@ -2,7 +2,7 @@
  * IMPORTANTE: no suelta mensajes al usuario, permite evitar envíos
  * en caso de que el usuario haga un cambio en el HTML
  */
-class ValidateForm {
+class ValidateFormSKL {
 
     #form;
     #formElements;
