@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <script src="ValidateForm.js"></script>
+    </head>
+    <body>
+        <form id="formulario">
+            <input name="nombre" placeholder="Nombre..." type="text" minlength="3" maxlength="10" required />
+            <input name="edad" placeholder="Edad..." type="number" min="1" max="100" required />
+            <button type="submit">Enviar datos</button>
+        </form>
+        <script>
+
+            let formulario = document.querySelector("#formulario");
+            let validator = new ValidateForm(formulario);
+
+        </script>
+    </body>
+</html>
