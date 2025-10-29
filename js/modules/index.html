@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title></title>
-        <script src="ValidateForm.js"></script>
+        <title>ValidateFormSKL</title>
+        <script src="ValidateFormSKL.js"></script>
     </head>
     <body>
-        <form id="formulario">
+        <form id="form">
             <input name="nombre" placeholder="Nombre..." type="text" minlength="3" maxlength="10" required />
             <input name="edad" placeholder="Edad..." type="number" min="1" max="100" required />
             <button type="submit">Enviar datos</button>
         </form>
         <script>
 
-            let formulario = document.querySelector("#formulario");
-            let validator = new ValidateFormSKL(formulario, () => {
-                console.warn("Formulario modificado, acción no permitida");
+            let form = document.querySelector("#form");
+            let validator = new ValidateFormSKL(form, () => {
+                console.warn("Modified form, action not allowed");
             });
 
         </script>

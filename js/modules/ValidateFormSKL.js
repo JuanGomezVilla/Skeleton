@@ -1,6 +1,13 @@
 /**
- * IMPORTANTE: no suelta mensajes al usuario, permite evitar envíos
- * en caso de que el usuario haga un cambio en el HTML
+ * **ValidateFormSKL**
+ * 
+ * This class allows you to validate a form and block the sending
+ * of the form. Same in case the user modifies it through HTML
+ *  with the developer tools. Serves a medium security level
+ * @author JuanGV
+ * @version 1.0.0
+ * @name ValidateFormSKL
+ * @license MIT
  */
 class ValidateFormSKL {
 
@@ -15,48 +22,59 @@ class ValidateFormSKL {
     }
 
     #setValidator(){
-        //Guarda los valores iniciales, realizando una copia para evitar cambios
+        //Save the initial values, making a copy to avoid changes
         this.#formElements = this.#mapHTMLElements(this.#form.elements);
         
-        //Añade un listener al formulario cuando se envíen los datos
+        //Add a listener to the form when data is submitted
         this.#form.addEventListener("submit", (e) => {
-            //Evitar por defecto el envío
+            //Avoid sending by default
             e.preventDefault();
 
+            //Makes a copy of items after sending to compare them with the old version
             let elements = this.#mapHTMLElements(this.#form.elements);
 
-
+            //There is a trigger activated
             let isValid = true;
 
-            for(let j=0; j<elements.length; j++){
-                //Obtener el grupo de claves de un elemento en concreto
-                let keys1 = Object.keys(elements[j]);
-                let keys2 = Object.keys(this.#formElements[j]);
+            //Iterate through each of the elements
+            for(let i=0; i<elements.length; i++){
+                //Get the key group of a specific element
+                let keys1 = Object.keys(elements[i]);
+                let keys2 = Object.keys(this.#formElements[i]);
 
-                //Si la cantidad de claves es diferente, genera un error
+                //If the number of keys is different, activate the error trigger
                 if(keys1.length != keys2.length){
                     isValid = false;
-                    break;
+                    break; //Break the loop
                 } else {
-                    //Para el primer grupo de claves, lo comprueba
-                    for(let i=0; i<keys1.length; i++){
-                        if(elements[j][keys1[i]] != this.#formElements[j][keys1[i]]){
+                    //To check by key group
+                    for(let j=0; j<keys1.length; j++){
+                        //If the content of one is different from the other, activate the error trigger
+                        if(elements[i][keys1[j]] != this.#formElements[i][keys1[j]]){
                             isValid = false;
-                            break;
+                            break; //Break the loop
                         }
                     }
                 }
             }
             
-            //Si el formulario es válido, envía los datos
-            //En caso contrario, ejecuta una posible función de callback
+            //If the form is valid, send the data
+            //Otherwise, execute a possible callback function
             if(isValid) this.#form.submit();
             else if(this.#callbackOnError) this.#callbackOnError();
         });
     }
 
-    #mapHTMLElements(htmlElement){
-        return Array.from(htmlElement).map(element => {
+    /**
+     * Toma un elemento HTML (generalmente del tipo formulario) y lo mapea
+     * a un diccionario. No lo genera como referencia, sino como una copia
+     * @param {HTMLElement} htmlElements Suele ser un listado de elementos7
+     * @returns {Array} Listado de elementos
+     * @function
+     * @private
+     */
+    #mapHTMLElements(htmlElements){
+        return Array.from(htmlElements).map(element => {
             let attributes = {};
             for(let attribute of element.attributes) attributes[attribute.name] = attribute.value;
             return {
