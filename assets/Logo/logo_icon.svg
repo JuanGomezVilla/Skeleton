@@ -1,0 +1,24 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background -->
+    <rect width="512" height="512" fill="#087ABB" />
+
+    <!-- Text -->
+    <text
+        x="50%"
+        y="65%"
+        text-anchor="middle"
+        font-family="Bahnschrift"
+        font-size="200"
+        font-weight="600"
+        fill="white"
+        filter="url(#shadow)">
+        SKL
+    </text>
+
+    <!-- Shadow -->
+    <defs>
+        <filter id="shadow" x="0%" y="0%">
+        <feDropShadow dx="0" dy="0" stdDeviation="8" flood-color="rgba(0,0,0,0.5)" />
+        </filter>
+    </defs>
+</svg>
