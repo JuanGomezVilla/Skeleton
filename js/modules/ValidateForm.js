@@ -6,30 +6,24 @@ class ValidateForm {
 
     #form;
     #formElements;
+    #callbackOnError;
 
-    constructor(form){
+    constructor(form, callbackOnError){
         this.#form = form;
         this.#setValidator();
+        this.#callbackOnError = callbackOnError;
     }
 
     #setValidator(){
         //Guarda los valores iniciales, realizando una copia para evitar cambios
-        this.#formElements = Array.from(this.#form.elements).map(element => {
-            const attrs = {};
-            for(let attr of element.attributes) attrs[attr.name] = attr.value;
-            return {tagName: element.tagName, type: element.type, ...attrs, checked: element.checked};
-        });
+        this.#formElements = this.#mapHTMLElements(this.#form.elements);
         
         //Añade un listener al formulario cuando se envíen los datos
         this.#form.addEventListener("submit", (e) => {
             //Evitar por defecto el envío
             e.preventDefault();
 
-            let elements = Array.from(this.#form.elements).map(element => {
-                const attrs = {};
-                for(let attr of el.attributes) attrs[attr.name] = attr.value;
-                return {tagName: element.tagName, type: element.type, ...attrs, checked: element.checked};
-            });
+            let elements = this.#mapHTMLElements(this.#form.elements);
 
 
             let isValid = true;
@@ -53,11 +47,24 @@ class ValidateForm {
                     }
                 }
             }
+            
+            //Si el formulario es válido, envía los datos
+            //En caso contrario, ejecuta una posible función de callback
+            if(isValid) this.#form.submit();
+            else if(this.#callbackOnError) this.#callbackOnError();
+        });
+    }
 
-            if(isValid) console.log("Formulario valido");
-            else console.warn("Invalido");
-        
-            //if(isValid) this.#formulario.submit();
+    #mapHTMLElements(htmlElement){
+        return Array.from(htmlElement).map(element => {
+            let attributes = {};
+            for(let attribute of element.attributes) attributes[attribute.name] = attribute.value;
+            return {
+                tagName: element.tagName,
+                type: element.type,
+                ...attributes,
+                checked: element.checked
+            };
         });
     }
 }

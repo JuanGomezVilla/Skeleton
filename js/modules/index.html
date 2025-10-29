@@ -13,7 +13,9 @@
         <script>
 
             let formulario = document.querySelector("#formulario");
-            let validator = new ValidateForm(formulario);
+            let validator = new ValidateForm(formulario, () => {
+                console.warn("Formulario modificado, acción no permitida");
+            });
 
         </script>
     </body>
